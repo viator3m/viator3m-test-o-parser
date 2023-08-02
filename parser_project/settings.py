@@ -123,3 +123,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Telegram bot token
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
+
+
+# Users models
+
+AUTH_USER_MODEL = 'users.CustomUser'

@@ -128,3 +128,13 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 # Users models
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Parsing settings
+
+AMOUNT = 10
+START_URL = 'https://www.ozon.ru/seller/1/products/'
+
+
+# Celery settings
+
+CELERY_TASK_TRACK_STARTED = True

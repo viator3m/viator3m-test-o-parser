@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
-from api.v1.views.parser import smoke
+from api import urls as api_urls
 
 urlpatterns = [
-    path('smoke/', smoke),
+    path('api/', include(api_urls)),
     path('admin/', admin.site.urls),
 ]

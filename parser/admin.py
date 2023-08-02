@@ -14,8 +14,7 @@ class ParsingAdmin(admin.ModelAdmin):
     @staticmethod
     def get_link_to_obj(obj):
         url = reverse('admin:parser_product_change', args=(obj.id,))
-        link = format_html('{}: <a href="{}">{}</a>', obj.id, url, obj)
-        return link
+        return format_html('{}: <a href="{}">{}</a>', obj.id, url, obj)
 
     def products(self, obj):
         products = obj.products.filter(parser=obj)
@@ -56,4 +55,3 @@ class ProductAdmin(admin.ModelAdmin):
     parsers.shorted_description = 'Parser'
     clear_price.shorted_description = 'Price'
     href.shorted_description = 'Link'
-

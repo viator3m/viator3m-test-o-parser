@@ -12,7 +12,7 @@ class Product(models.Model):
     title = models.CharField(max_length=256)
     price = models.IntegerField()
     link = models.URLField(max_length=512)
-    parsing = models.ForeignKey(
+    parser = models.ForeignKey(
         'Parsing',
         on_delete=models.CASCADE,
         related_name='products',

@@ -1,8 +1,8 @@
-from django.core.management import BaseCommand
 from django.conf import settings as conf
+from django.core.management import BaseCommand
 from telegram.ext import CallbackQueryHandler, CommandHandler, Updater
 
-from bot.bot import start, get_last
+from bot.bot import get_last, start
 
 
 class Command(BaseCommand):

@@ -7,21 +7,21 @@ from api.v1.views.parser import ProductDetailView, ProductListView
 
 urlpatterns = [
     path('products/', ProductListView.as_view(), name='products'),
-    path('products/<int:pk>/', ProductDetailView.as_view(), name='products-detail') # noqa
+    path('products/<int:pk>/', ProductDetailView.as_view(),
+         name='products-detail')
 ]
 
-
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Parser API",
-      default_version='v1',
-      description="Examples requests for Parser API",
-      contact=openapi.Contact(email="job@kamyshanov.ru",
-                              name="Vladimir Kamyshanov",
-                              ),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="Parser API",
+        default_version='v1',
+        description="Examples requests for Parser API",
+        contact=openapi.Contact(email="job@kamyshanov.ru",
+                                name="Vladimir Kamyshanov",
+                                ),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns += [

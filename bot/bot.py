@@ -1,6 +1,5 @@
 import requests
-from telegram import InlineKeyboardMarkup, InlineKeyboardButton
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 BUTTON = InlineKeyboardMarkup(
     [

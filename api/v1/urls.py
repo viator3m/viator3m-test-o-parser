@@ -7,7 +7,7 @@ from api.v1.views.parser import ProductDetailView, ProductListView
 
 urlpatterns = [
     path('products/', ProductListView.as_view(), name='products'),
-    path('products/<int:id>/', ProductDetailView.as_view(), name='products-detail') # noqa
+    path('products/<int:pk>/', ProductDetailView.as_view(), name='products-detail') # noqa
 ]
 
 

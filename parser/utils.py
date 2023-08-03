@@ -3,6 +3,7 @@ from django.conf import settings as conf
 from django.db import transaction
 from selenium import webdriver
 from selenium.common import TimeoutException
+from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -12,7 +13,7 @@ from parser.models import Parsing
 from parser_project.celery import app
 
 arguments = [
-    'headless',
+    '--headless',
     '--disable-blink-features=AutomationControlled',
     ('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36'),
@@ -31,7 +32,11 @@ class Browser:
         self.options.binary_location = '/usr/bin/firefox'
 
     def get_page(self, page=conf.START_URL):
-        browser = webdriver.Firefox(options=self.options)
+        browser = webdriver.Remote(
+            command_executor='http://firefox:4444/wd/hub',
+            desired_capabilities=DesiredCapabilities.FIREFOX,
+            options=self.options,
+        )
         browser.get(page)
         wait = WebDriverWait(browser, timeout=5)
         try:

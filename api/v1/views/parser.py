@@ -1,14 +1,14 @@
 from celery.result import AsyncResult
-from django.conf import settings as conf
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
-from rest_framework.exceptions import ValidationError
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
-from api.v1.serializers.parser import ProductSerializer, \
-    ProductCreateSerializer
+from api.v1.serializers.parser import (
+    ProductCreateSerializer,
+    ProductSerializer,
+)
 from parser.models import Parsing, Product
 from parser.utils import parsing
 

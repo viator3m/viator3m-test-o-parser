@@ -1,0 +1,12 @@
+beautifulsoup4==4.12.2
+celery==5.3.1
+django==3.2.20
+django-adminlte3==0.1.6
+djangorestframework==3.14.0
+drf-yasg==1.21.7
+gunicorn==21.2.0
+mysqlclient==2.0.1
+python-dotenv==1.0.0
+python-telegram-bot==13.7
+requests==2.31.0
+selenium==4.6.0

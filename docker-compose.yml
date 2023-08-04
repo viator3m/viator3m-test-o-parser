@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+    command: /start
+    expose:
+      - 8000
+    volumes:
+      - static:/app/static/
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:1.21.3-alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./infra/nginx.conf:/etc/nginx/conf.d/default.conf
+      - static:/var/html/static/
+    depends_on:
+      - backend
+
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      retries: 10
+    volumes:
+      - db:/var/lib/mysql
+
+  rabbit:
+    container_name: rabbit
+    restart: always
+    image: rabbitmq:3.9-alpine
+    volumes:
+      - rabbit_data:/var/lib/rabbitmq
+    ports:
+      - '5672:5672'
+
+  celery:
+    build: ./
+    command: celery -A parser_project worker -l info
+    volumes:
+      - ./:/usr/src/app/
+    env_file:
+      - .env
+    depends_on:
+      - rabbit
+      - backend
+      - firefox
+
+  firefox:
+    image: selenium/standalone-firefox:latest
+    hostname: firefox
+    ports:
+      - "4444:4444"
+
+
+volumes:
+  static:
+  rabbit_data:
+  db:

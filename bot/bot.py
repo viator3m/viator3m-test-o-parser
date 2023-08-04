@@ -25,6 +25,14 @@ def get_last(update, context):
     response = requests.get('http://localhost:8000/api/v1/products/')
     chat = update.effective_chat
     data = response.json()
+    if not data:
+        return context.bot.send_message(
+            chat.id,
+            text='Парсинг еще не запускался',
+            reply_markup=BUTTON,
+            parse_mode='html',
+            disable_web_page_preview=True,
+        )
     sending_data = [(item['title'], item['link']) for item in data]
     message = 'Список товаров:\n\n'
 

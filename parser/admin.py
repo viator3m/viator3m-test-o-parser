@@ -51,7 +51,7 @@ class ProductAdmin(admin.ModelAdmin):
             '<a href="{}" target="_blank">{}...</a>', obj.link, obj.link[:70]
         )
 
-    short_title.shorted_description = 'Title'
-    parsers.shorted_description = 'Parser'
-    clear_price.shorted_description = 'Price'
-    href.shorted_description = 'Link'
+    short_title.short_description = 'Title'
+    parsers.short_description = 'Parser'
+    clear_price.short_description = 'Price'
+    href.short_description = 'Link'

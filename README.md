@@ -17,6 +17,10 @@ docker-compose up
 - запуск миграции в БД
 - запуск Telegram-бота  
 
+Для получения уведомлений о завершении парсинга в Telegram,
+начать диалог с ботом [@parser_ozon_bot](https://t.me/parser_ozon_bot)
+и указать свой telegram_id в .env-файле. (id можно получить у [@userinfobot](https://t.me/userinfobot))
+
 Документация к API проекта будет доступна по адресу http://localhost/api/v1/swagger/
 
 

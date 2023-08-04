@@ -7,8 +7,11 @@ from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from telegram import Bot
+from telegram.error import BadRequest
 
 from api.v1.serializers.parser import ProductSerializer
+from bot.bot import BUTTON
 from parser.models import Parsing
 from parser_project.celery import app
 
@@ -94,4 +97,14 @@ def parsing(self, amount):
             page=conf.START_URL + '?page=2'
         )
     save_to_db(items)
+    bot = Bot(token=conf.BOT_TOKEN)
+    try:
+        bot.send_message(
+            chat_id=conf.TELEGRAM_ID,
+            text=('Парсинг завершен.\n'
+                  f'Товаров получено: {len(items)}'),
+            reply_markup=BUTTON,
+        )
+    except BadRequest as e:
+        print(e)
     return 'Parsing completed successfully'

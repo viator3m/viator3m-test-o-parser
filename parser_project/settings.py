@@ -119,9 +119,10 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Telegram bot token
+# Telegram settings
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
+TELEGRAM_ID = os.getenv('TELEGRAM_ID')
 
 # Users models
 

@@ -5,7 +5,7 @@ BUTTON = InlineKeyboardMarkup(
     [
         [
             InlineKeyboardButton(
-                'Открыть последний парсинг', callback_data='last'
+                'Список товаров', callback_data='last'
             ),
         ],
     ],
